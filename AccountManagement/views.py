@@ -6,6 +6,8 @@ from .models import Account,AccountSession
 from .serializers import AccountSerializer
 import requests
 from django.contrib.auth.hashers import make_password
+from .utils import generate_access_token
+
 
 
 def get_geoLocation(ip):
@@ -46,7 +48,8 @@ def createAccount(request):
             print('serializer valid degil')
             return Response('Bad Request',status=status.HTTP_400_BAD_REQUEST)
 
-        print(serializer.validated_data.get('userIp',None))
+        account_session=AccountSession(account_uid=instance.account_uid,name=instance.name,userIp=get_ip(request))
+
         if serializer.validated_data.get('userIp',None) is not None:
             geo_data = get_geoLocation(instance.userIp)
 
@@ -54,16 +57,25 @@ def createAccount(request):
             if geo_data is not None:
                 if 'latitude' in geo_data:
                     instance.latitude=geo_data['latitude']
+                    account_session.latitude=geo_data['latitude']
                 if 'longitude' in geo_data:
                     instance.longitude=geo_data['longitude']
+                    account_session.latitude=geo_data['longitude']
 
+
+
+        
+        token=generate_access_token(instance)
         instance.save()
-        return Response(instance.account_uid, status=status.HTTP_201_CREATED)
+        account_session.save()
+        return Response(token, status=status.HTTP_201_CREATED)
     except Exception as ex:
         print(str(ex))
         raise ex
 
-
+@api_view(['GET'])
+def login(request):
+    pass
 
 
 
