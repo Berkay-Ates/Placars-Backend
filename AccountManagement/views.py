@@ -42,7 +42,7 @@ def createAccount(request):
             except Account.DoesNotExist:
                 #Yeni Kullanici Olusuturuldu
                 instance=Account(name=serializer.validated_data['name'], email=serializer.validated_data.get('email', None),\
-                                userIp=get_ip(request),phone=serializer.validated_data['phone'],
+                                userIp=get_ip(request),phone=serializer.validated_data.get('phone', None),
                                 password=make_password(serializer.validated_data['password']))
         else:
             print('serializer valid degil')
@@ -75,7 +75,16 @@ def createAccount(request):
 
 @api_view(['GET'])
 def login(request):
-    pass
+    try:
+
+        serializer=AccountSerializer(data=request.data) # gonderilen istekteki gelen verinin uygun olup olmadigi kontrol ediliyork
+        
+        
+    
+    
+    except:
+        pass
+    
 
 
 
