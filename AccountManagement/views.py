@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from .models import Account,AccountSession
 from .serializers import AccountSerializer
 import requests
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password , check_password
 from .utils import generate_access_token
 
 
@@ -78,13 +78,25 @@ def login(request):
     try:
 
         serializer=AccountSerializer(data=request.data) # gonderilen istekteki gelen verinin uygun olup olmadigi kontrol ediliyork
+        if serializer.is_valid():
+            email=serializer.validated_data.get('email', None)
+            password=serializer.validated_data.get('password', None)
+            try:
+                instance=Account.objects.get(email=email)
+            except Account.DoesNotExist:
+                return Response("Bu maile ait kullanici bulunamamktadir",status.HTTP_404_NOT_FOUND)
+            
+            if check_password(password=password,encoded=instance.password):
+                token=generate_access_token(instance)
+            return Response(token, status=status.HTTP_202_ACCEPTED)
+        else:
+            return Response("Gonderilen veriler uygun degil",status.HTTP_400_BAD_REQUEST)
+
+
+    
+    except Exception as e:
+        raise e
         
-        
-    
-    
-    except:
-        pass
-    
 
 
 
