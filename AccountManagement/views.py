@@ -6,7 +6,8 @@ from .models import Account,AccountSession
 from .serializers import AccountSerializer
 import requests
 from django.contrib.auth.hashers import make_password , check_password
-from .utils import generate_access_token
+from .utils import generate_access_token,check_access_token
+from django.core import serializers
 
 
 
@@ -91,12 +92,38 @@ def login(request):
             return Response(token, status=status.HTTP_202_ACCEPTED)
         else:
             return Response("Gonderilen veriler uygun degil",status.HTTP_400_BAD_REQUEST)
-
-
-    
     except Exception as e:
         raise e
         
+
+@api_view(["GET"])
+def getAccount(request):
+        try:
+            token=request.META.get('HTTP_AUTHORIZATION').split(" ")[1]
+            decoded=check_access_token(token=token)
+            if decoded==None:
+                return Response("Token gecerlilik suresini yitirmistir",status.HTTP_401_UNAUTHORIZED)
+            else:
+                print(decoded)
+                account_uid=decoded['account_uid']
+                instance=Account.objects.get(account_uid=account_uid)
+                accunt={
+                    "name":instance.name,
+                    "email":instance.email
+                }
+                
+                
+                return Response(accunt)
+
+
+
+
+
+        except Exception as e:
+            print(e)
+            raise e
+    
+        return Response("dataGeldi")
 
 
 
