@@ -112,18 +112,12 @@ def getAccount(request):
                     "email":instance.email
                 }
                 
-                
-                return Response(accunt)
-
-
-
-
+                return Response(accunt,status.HTTP_200_OK)
 
         except Exception as e:
             print(e)
             raise e
     
-        return Response("dataGeldi")
 
 
 
