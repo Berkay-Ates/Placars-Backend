@@ -5,12 +5,12 @@ databases:
 
 services:
   - type: web
-    name: mysite
+    name: Placars
     env: python
-    buildCommand: "./build.sh"
-    startCommand: "gunicorn mysite.wsgi:application"
+    buildCommand: "pip inststall -r requirements.txt"
+    startCommand: "python3 manage.py runserver"
     envVars:
-      - key: DATABASE_URL
+      - key: 
         fromDatabase:
           name: mysite
           property: connectionString
