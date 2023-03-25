@@ -24,6 +24,8 @@ class AccountSession(models.Model):
     userIp = models.GenericIPAddressField(unpack_ipv4=True, blank=True, null=True)
     latitude = models.CharField(max_length=10, blank=True, null=True)
     longitude = models.CharField(max_length=10, blank=True, null=True)
+    createDate = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         return self.name
@@ -45,6 +47,8 @@ class Car(models.Model):
     model=models.CharField(max_length=40,blank=True,null=True)
     carPhotoLocationNo=models.CharField(max_length=100,blank=True,null=True)
     color=models.CharField(max_length=10,blank=True,null=True)
+    createDate = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         return f"{self.model} {self.brand}"
@@ -57,37 +61,11 @@ class Comment(models.Model):
     author=models.ForeignKey(Account,on_delete=models.CASCADE)
     targetCar=models.ForeignKey(Car,on_delete=models.CASCADE)
     createDate = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    commentReceiver=models.CharField(max_length=30,blank=False, null=False)
+    commentReceiver=models.ForeignKey(Account,on_delete=models.CASCADE,blank=True, null=True)
     content=models.CharField(max_length=100, blank=False, null=False)
     title=models.CharField(max_length=30, blank=False, null=False)
 
     def __str__(self):
         return self.title
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

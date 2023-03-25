@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Account,AccountSession
-from .serializers import AccountSerializer
+from .models import Account,AccountSession,Car
+from .serializers import AccountSerializer,CarSerializer
 import requests
 from django.contrib.auth.hashers import make_password , check_password
 from .utils import generate_access_token,check_access_token
@@ -89,6 +89,7 @@ def login(request):
             
             if check_password(password=password,encoded=instance.password):
                 token=generate_access_token(instance)
+                account_session=AccountSession(account_uid=instance.account_uid,name=instance.name,userIp=get_ip(request))
             return Response(token, status=status.HTTP_202_ACCEPTED)
         else:
             return Response("Gonderilen veriler uygun degil",status.HTTP_400_BAD_REQUEST)
@@ -99,24 +100,62 @@ def login(request):
 @api_view(["GET"])
 def getAccount(request):
         try:
-            token=request.META.get('HTTP_AUTHORIZATION').split(" ")[1]
-            decoded=check_access_token(token=token)
-            if decoded==None:
-                return Response("Token gecerlilik suresini yitirmistir",status.HTTP_401_UNAUTHORIZED)
-            else:
-                print(decoded)
-                account_uid=decoded['account_uid']
-                instance=Account.objects.get(account_uid=account_uid)
-                accunt={
-                    "name":instance.name,
-                    "email":instance.email
-                }
+            decoded=check_access_token(request=request)
+            account_uid=decoded['account_uid']
+            instance=Account.objects.get(account_uid=account_uid)
+            print("decoded ne ",decoded)
+            account={
+                "name":instance.name,
+                "email":instance.email
+            }
                 
-                return Response(accunt,status.HTTP_200_OK)
+            return Response(account,status.HTTP_200_OK)
 
         except Exception as e:
             print(e)
             raise e
+
+
+@api_view(["POST"])
+def newCar(request):
+    try:
+        decoded=check_access_token(request=request)
+        account_uid=decoded['account_uid']
+        instance: Car= None
+        serializer=CarSerializer(data=request.data)
+
+        if serializer.is_valid():
+            try:
+                instance=Car.objects.get(license=serializer.validated_data["license"])            
+            except Car.DoesNotExist:
+
+                instance=Car(account_uid=account_uid, license=serializer.validated_data["license"],
+                             brand=serializer.validated_data.get('brand', None),model=serializer.validated_data.get('model', None),
+                             carPhotoLocationNo=serializer.validated_data.get('carPhotoLocationNo', None),
+                             color=serializer.validated_data.get('color', None))
+                
+                
+
+            return Response("Yeni arac olusturuldu", status=status.HTTP_201_CREATED)
+
+        else:
+            print('serializer valid degil')
+            return Response('Bad Request',status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+        
+
+
+
+
+        
+    except Exception as e:
+        print(e)
+        raise e
+
     
 
 
