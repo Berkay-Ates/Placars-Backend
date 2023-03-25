@@ -7,7 +7,7 @@ services:
   - type: web
     name: Placars
     env: python
-    buildCommand: "pip inststall -r requirements.txt"
+    buildCommand: "pip install -r requirements.txt"
     startCommand: "python3 manage.py runserver"
     envVars:
       - key: 
