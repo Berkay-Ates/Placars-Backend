@@ -6,7 +6,7 @@ from uuid import uuid4
 class Account(models.Model):
     account_uid = models.UUIDField(default=uuid4, editable=False, unique=True, db_index=True)
     name = models.CharField(max_length=30, blank=False, null=True)
-    password = models.CharField(max_length=30, blank=False, null=True)
+    password = models.CharField(max_length=256 ,blank=False, null=True)
     email = models.EmailField(blank=False, null=True)
     userIp = models.GenericIPAddressField(unpack_ipv4=True, blank=True, null=True)
     latitude = models.CharField(max_length=10, blank=True, null=True)

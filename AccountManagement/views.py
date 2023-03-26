@@ -45,6 +45,7 @@ def createAccount(request):
                 instance=Account(name=serializer.validated_data['name'], email=serializer.validated_data.get('email', None),\
                                 userIp=get_ip(request),phone=serializer.validated_data.get('phone', None),
                                 password=make_password(serializer.validated_data['password']))
+                print(instance)
         else:
             print('serializer valid degil')
             return Response('Bad Request',status=status.HTTP_400_BAD_REQUEST)
@@ -129,29 +130,28 @@ def newCar(request):
                 instance=Car.objects.get(license=serializer.validated_data["license"])            
             except Car.DoesNotExist:
 
-                instance=Car(account_uid=account_uid, license=serializer.validated_data["license"],
+                instance=Car(license=serializer.validated_data["license"],
                              brand=serializer.validated_data.get('brand', None),model=serializer.validated_data.get('model', None),
                              carPhotoLocationNo=serializer.validated_data.get('carPhotoLocationNo', None),
                              color=serializer.validated_data.get('color', None))
                 
-                
+                if  request.data.get("owner")=="True":
+                        account=Account.objects.get(account_uid=account_uid)
+                        instance.account=account
 
-            return Response("Yeni arac olusturuldu", status=status.HTTP_201_CREATED)
 
+
+                instance.save()
+
+
+
+                return Response("Yeni arac olusturuldu", status=status.HTTP_201_CREATED)
+            
+            return Response("Bu arac kayitlidir", status=status.HTTP_302_FOUND)
         else:
             print('serializer valid degil')
             return Response('Bad Request',status=status.HTTP_400_BAD_REQUEST)
 
-
-
-
-
-        
-
-
-
-
-        
     except Exception as e:
         print(e)
         raise e
