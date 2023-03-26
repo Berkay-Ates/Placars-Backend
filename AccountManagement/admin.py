@@ -6,3 +6,5 @@ admin.site.register(Account)
 admin.site.register(Car)
 admin.site.register(Comment)
 admin.site.register(AccountSession)
+
+

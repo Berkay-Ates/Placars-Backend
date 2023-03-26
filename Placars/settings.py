@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -138,3 +139,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 import dj_database_url
 
 DATABASES = {"default": dj_database_url.parse(env("DATABASE_URL"))}
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "placars", "static"),
+]
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
