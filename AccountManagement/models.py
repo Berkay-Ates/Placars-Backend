@@ -13,6 +13,7 @@ class Account(models.Model):
     longitude = models.CharField(max_length=10, blank=True, null=True)
     phone = models.CharField(max_length=11, blank=True, null=True)
     createDate = models.DateTimeField(auto_now_add=True)
+    isAcitve=models.BooleanField(default=False)
 
     def _str_(self):
         return self.name
@@ -39,6 +40,7 @@ class Car(models.Model):
     carPhotoLocationNo = models.CharField(max_length=100, blank=True, null=True)
     color = models.CharField(max_length=10, blank=True, null=True)
     createDate = models.DateTimeField(auto_now_add=True)
+    satilikMi=models.BooleanField(default=False)
 
     def _str_(self):
         return f"{self.model} {self.brand}"

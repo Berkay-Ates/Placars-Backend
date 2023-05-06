@@ -10,6 +10,30 @@ from .utils import generate_access_token,check_access_token
 from django.core import serializers
 
 
+"""
+apiKey: "AIzaSyCtZuyseegQ5qBVmm-zTC_LjDNld5zS-tg",
+
+  authDomain: "placars-d9bbf.firebaseapp.com",
+
+  projectId: "placars-d9bbf",
+
+  storageBucket: "placars-d9bbf.appspot.com",
+
+  messagingSenderId: "323561976776",
+
+  appId: "1:323561976776:web:54ade11c6a66a3e28d86fd",
+
+  measurementId: "G-LMX73QMGEF"
+
+
+"""
+
+
+
+
+
+
+
 
 def get_geoLocation(ip):
     response = requests.get(f'https://ipapi.co/{ip}/json/').json()
