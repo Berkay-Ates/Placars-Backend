@@ -7,6 +7,7 @@ class Account(models.Model):
     account_uid = models.UUIDField(default=uuid4, editable=False, unique=True, db_index=True)
     name = models.CharField(max_length=30, blank=False, null=True)
     password = models.CharField(max_length=256 ,blank=False, null=True)
+    username=models.CharField(max_length=256,blank=False,null=False)
     email = models.EmailField(blank=False, null=True)
     userIp = models.GenericIPAddressField(unpack_ipv4=True, blank=True, null=True)
     latitude = models.CharField(max_length=10, blank=True, null=True)
@@ -15,8 +16,14 @@ class Account(models.Model):
     createDate = models.DateTimeField(auto_now_add=True)
     isAcitve=models.BooleanField(default=False)
 
-    def _str_(self):
-        return self.name
+
+
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+
 
 
 class AccountSession(models.Model):
@@ -27,8 +34,8 @@ class AccountSession(models.Model):
     longitude = models.CharField(max_length=10, blank=True, null=True)
     createDate = models.DateTimeField(auto_now_add=True)
 
-    def _str_(self):
-        return self.name
+    def __str__(self):
+        return f"{self.name}"
 
 
 class Car(models.Model):
@@ -42,7 +49,7 @@ class Car(models.Model):
     createDate = models.DateTimeField(auto_now_add=True)
     satilikMi=models.BooleanField(default=False)
 
-    def _str_(self):
+    def __str__(self):
         return f"{self.model} {self.brand}"
 
 
@@ -57,5 +64,5 @@ class Comment(models.Model):
     content = models.CharField(max_length=100, blank=False, null=False)
     title = models.CharField(max_length=30, blank=False, null=False)
 
-    def _str_(self):
+    def __str__(self):
         return self.title

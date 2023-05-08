@@ -6,8 +6,10 @@ from .models import Account,AccountSession,Car
 from .serializers import AccountSerializer,CarSerializer
 import requests
 from django.contrib.auth.hashers import make_password , check_password
-from .utils import generate_access_token,check_access_token
+from .utils import generate_access_token,check_access_token,sendMail
 from django.core import serializers
+import jwt
+from django.conf import settings
 
 
 """
@@ -68,7 +70,7 @@ def createAccount(request):
                 #Yeni Kullanici Olusuturuldu
                 instance=Account(name=serializer.validated_data['name'], email=serializer.validated_data.get('email', None),\
                                 userIp=get_ip(request),phone=serializer.validated_data.get('phone', None),
-                                password=make_password(serializer.validated_data['password']))
+                                password=make_password(serializer.validated_data['password']),username=serializer.validated_data['username'])
                 print(instance)
         else:
             print('serializer valid degil')
@@ -92,6 +94,8 @@ def createAccount(request):
 
         
         token=generate_access_token(instance)
+        print("instance", instance)
+        sendMail(instance.email,token)
         instance.save()
         account_session.save()
         return Response(token, status=status.HTTP_201_CREATED)
@@ -180,7 +184,25 @@ def newCar(request):
         print(e)
         raise e
 
-    
+@api_view(["GET"])
+def emailVerify(request,token):
+    print("verify email token ",token)
+    try:
+        decoded = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256', ])
+
+        account_uid = decoded['account_uid']
+        instance = Account.objects.get(account_uid=account_uid)
+        instance.isAcitve=True
+        instance.save()
+
+        return Response("Onaylandı", status.HTTP_200_OK)
+
+    except Exception as e:
+        print(e)
+        raise e
+
+
+
 
 
 

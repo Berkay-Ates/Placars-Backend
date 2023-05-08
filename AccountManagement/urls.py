@@ -7,7 +7,7 @@ urlpatterns = [
     path('CreateAccount/',views.createAccount),
     path('login/',views.login),
     path('account/',views.getAccount),
-    path('newCar/',views.newCar)
-
+    path('newCar/',views.newCar),
+    path("confimEmail/<str:token>/",views.emailVerify, name = "emailverify"),
 
 ]

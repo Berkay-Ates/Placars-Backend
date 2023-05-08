@@ -4,8 +4,9 @@ from django.conf import settings
 import json
 from rest_framework.response import Response
 from rest_framework import status
-
-
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 def generate_access_token(user):
 
@@ -35,3 +36,18 @@ def check_access_token(request):
          
 
     return decoded
+
+
+def sendMail(target,token):
+    print("sent amil ")
+    html_message = render_to_string('email/emailTemplate.html', {'confirmation_link': 'http://127.0.0.1:8000/AccountManagement/confimEmail/'+token['access']})
+    plain_message = strip_tags(html_message)
+    send_mail(
+        'Onay e-postası',  # konu
+        plain_message,  # düz metin içerik
+        'settings.EMAIL_HOST_USER',  # gönderen
+        [target],  # alıcılar
+        html_message=html_message,  # HTML içerik
+        fail_silently=False
+    )
+    print("gönderildi")

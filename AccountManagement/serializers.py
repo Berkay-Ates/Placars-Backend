@@ -4,7 +4,7 @@ from .models import Account,Car
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model=Account
-        fields=('name','email','phone','password')
+        fields=('name','email','phone','password','username')
 
 class CarSerializer(serializers.ModelSerializer):
     class Meta:
