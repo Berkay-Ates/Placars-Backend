@@ -27,16 +27,6 @@ class Account(models.Model):
 
 
 
-class AccountSession(models.Model):
-    account_uid = models.UUIDField(primary_key=True,default=uuid4, editable=False, unique=True, db_index=True)
-    name = models.CharField(max_length=30, blank=False, null=True)
-    userIp = models.GenericIPAddressField(unpack_ipv4=True, blank=True, null=True)
-    latitude = models.CharField(max_length=10, blank=True, null=True)
-    longitude = models.CharField(max_length=10, blank=True, null=True)
-    createDate = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.name}"
 
 
 class Car(models.Model):
@@ -53,16 +43,13 @@ class Car(models.Model):
     satilikMi=models.BooleanField(default=False)
     carKm=models.IntegerField()
 
-
-
     def __str__(self):
         return f"{self.model} {self.brand} "
-
 
 class Comment(models.Model):
     comment_uid = models.UUIDField(primary_key=True,default=uuid4, editable=False, unique=True, db_index=True)
     author = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="comments_authored")
-    targetCar = models.ForeignKey(Car, on_delete=models.CASCADE)
+    targetCar = models.ForeignKey(Car, on_delete=models.CASCADE,related_name="comments_targetCar", to_field='car_uid')
     createDate = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     content = models.CharField(max_length=100, blank=False, null=False)
@@ -70,3 +57,17 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+class AccountSession(models.Model):
+    account_uid = models.UUIDField(primary_key=True,default=uuid4, editable=False, unique=True, db_index=True)
+    name = models.CharField(max_length=30, blank=False, null=True)
+    userIp = models.GenericIPAddressField(unpack_ipv4=True, blank=True, null=True)
+    latitude = models.CharField(max_length=10, blank=True, null=True)
+    longitude = models.CharField(max_length=10, blank=True, null=True)
+    createDate = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name}"
+
