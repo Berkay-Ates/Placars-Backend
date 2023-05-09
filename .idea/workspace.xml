@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e1bb184-01e4-49e4-97c1-cefdf17d248f" name="Changes" comment="a">
-      <change afterPath="$PROJECT_DIR$/templates/email/emailTemplate.html" afterDir="false" />
+    <list default="true" id="9e1bb184-01e4-49e4-97c1-cefdf17d248f" name="Changes" comment="email ile kayit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AccountManagement/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AccountManagement/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AccountManagement/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AccountManagement/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AccountManagement/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Placars/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Placars/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +90,8 @@
       <workItem from="1683396779356" duration="2954000" />
       <workItem from="1683474998040" duration="10039000" />
       <workItem from="1683492972725" duration="906000" />
-      <workItem from="1683527198392" duration="7684000" />
+      <workItem from="1683527198392" duration="15593000" />
+      <workItem from="1683610945649" duration="2241000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1679429860551</created>
@@ -122,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683397727978</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="email ile kayit">
+      <created>1683539675505</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1683539675505</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +147,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="a" />
-    <option name="LAST_COMMIT_MESSAGE" value="a" />
+    <MESSAGE value="email ile kayit" />
+    <option name="LAST_COMMIT_MESSAGE" value="email ile kayit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Placars/settings.py</url>
+          <line>128</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

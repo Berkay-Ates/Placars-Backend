@@ -1,16 +1,20 @@
+import json
+
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Account,AccountSession,Car
-from .serializers import AccountSerializer,CarSerializer
+from .serializers import AccountSerializer,CarSerializer,LoginSerializer
 import requests
 from django.contrib.auth.hashers import make_password , check_password
 from .utils import generate_access_token,check_access_token,sendMail
 from django.core import serializers
 import jwt
 from django.conf import settings
-
+from django.http import JsonResponse
+from django.core import serializers
+from django.http import HttpResponse
 
 """
 apiKey: "AIzaSyCtZuyseegQ5qBVmm-zTC_LjDNld5zS-tg",
@@ -107,7 +111,7 @@ def createAccount(request):
 def login(request):
     try:
 
-        serializer=AccountSerializer(data=request.data) # gonderilen istekteki gelen verinin uygun olup olmadigi kontrol ediliyork
+        serializer=LoginSerializer(data=request.data) # gonderilen istekteki gelen verinin uygun olup olmadigi kontrol ediliyork
         if serializer.is_valid():
             email=serializer.validated_data.get('email', None)
             password=serializer.validated_data.get('password', None)
@@ -160,8 +164,8 @@ def newCar(request):
 
                 instance=Car(license=serializer.validated_data["license"],
                              brand=serializer.validated_data.get('brand', None),model=serializer.validated_data.get('model', None),
-                             carPhotoLocationNo=serializer.validated_data.get('carPhotoLocationNo', None),
-                             color=serializer.validated_data.get('color', None))
+                             carPhotoLocationNo=serializer.validated_data.get('carPhotoLocationNo', None),carLicensePhotoLocationNo=serializer.validated_data.get('carLicensePhotoLocationNo', None),
+                             color=serializer.validated_data.get('color', None),satilikMi=serializer.validated_data.get('satilikMi', None),carKm=serializer.validated_data.get('carKm', None))
                 
                 if  request.data.get("owner")=="True":
                         account=Account.objects.get(account_uid=account_uid)
@@ -201,7 +205,14 @@ def emailVerify(request,token):
         print(e)
         raise e
 
-
+@api_view(["GET"])
+def getMyCars(request):
+    decoded = check_access_token(request=request)
+    account_uid = decoded['account_uid']
+    account=Account.objects.get(account_uid=account_uid)
+    cars = list(Car.objects.filter(account=account))
+    cars = serializers.serialize('json', cars)
+    return  HttpResponse(cars, content_type='application/json')
 
 
 
