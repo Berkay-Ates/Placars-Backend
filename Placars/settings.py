@@ -153,8 +153,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 
 EMAIL_PORT = 587
 
-EMAIL_HOST_USER = 'tunasen13@gmail.com'
+EMAIL_HOST_USER = 'placars2142@gmail.com'
 
-EMAIL_HOST_PASSWORD = 'aqpweelvlfrlcoog'
+EMAIL_HOST_PASSWORD = 'zvsqpyfseqkvcwhg'
 
 EMAIL_USE_TLS = True
