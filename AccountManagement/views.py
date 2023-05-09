@@ -73,7 +73,7 @@ def createAccount(request):
             except Account.DoesNotExist:
                 #Yeni Kullanici Olusuturuldu
                 instance=Account(name=serializer.validated_data['name'], email=serializer.validated_data.get('email', None),\
-                                userIp=get_ip(request),phone=serializer.validated_data.get('phone', None),
+                                userIp=get_ip(request),phone=serializer.validated_data.get('phone', None),following=None,
                                 password=make_password(serializer.validated_data['password']),username=serializer.validated_data['username'])
                 print(instance)
         else:
