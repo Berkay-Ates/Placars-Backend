@@ -225,7 +225,7 @@ def CarDetails(request,license):
     return  HttpResponse(car, content_type='application/json')
 
 @api_view(["PoST"])
-def newCommet(request):
+def newComment(request):
     decoded = check_access_token(request=request)
     account_uid = decoded['account_uid']
     serializer = CommentSerializer(data=request.data)

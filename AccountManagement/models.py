@@ -40,7 +40,7 @@ class AccountSession(models.Model):
 
 
 class Car(models.Model):
-    account = models.ForeignKey(Account, on_delete=models.CASCADE, blank=True, null=True)
+    account = models.ForeignKey(Account,on_delete=models.CASCADE, blank=True, null=True)
     car_uid = models.UUIDField(primary_key=True,default=uuid4, editable=False, unique=True, db_index=True)
     license = models.CharField(max_length=9, blank=False, null=False)
     brand = models.CharField(max_length=30, blank=True, null=True)
