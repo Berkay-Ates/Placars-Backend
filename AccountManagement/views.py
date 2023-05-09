@@ -98,7 +98,7 @@ def createAccount(request):
 
         
         token=generate_access_token(instance)
-        print("instance", instance)
+        print("instance", instance.email)
         sendMail(instance.email,token)
         instance.save()
         account_session.save()
