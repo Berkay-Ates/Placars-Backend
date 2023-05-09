@@ -156,7 +156,7 @@ def newCar(request):
         account_uid=decoded['account_uid']
         instance: Car= None
         serializer=CarSerializer(data=request.data)
-
+        print(serializer,serializer.is_valid())
         if serializer.is_valid():
             try:
                 instance=Car.objects.get(license=serializer.validated_data["license"])            
@@ -229,9 +229,29 @@ def newComment(request):
     decoded = check_access_token(request=request)
     account_uid = decoded['account_uid']
     serializer = CommentSerializer(data=request.data)
-    print(serializer)
+    print(serializer,serializer.is_valid())
+    try:
+        if serializer.is_valid():
+            Car_license=request.data.get('targetCarLicense')
+            print(Car_license)
+            car=Car.objects.get(license=Car_license)
 
-    return
+            print(car)
+            account=Account.objects.get(account_uid=account_uid)
+            newComment=Comment(author=account,targetCar=car,
+                               content=serializer.validated_data['content'],
+                               title=serializer.validated_data['title'])
+            newComment.save()
+
+
+        else:
+            return HttpResponse('Seriliazer valid değil', status=status.HTTP_400_BAD_REQUEST)
+
+    except Exception as e:
+        print(e)
+        raise  e
+
+    return  HttpResponse('Oluşturuldı',status=status.HTTP_201_CREATED)
 
 
 
