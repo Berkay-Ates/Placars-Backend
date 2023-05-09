@@ -4,8 +4,8 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Account,AccountSession,Car
-from .serializers import AccountSerializer,CarSerializer,LoginSerializer
+from .models import *
+from .serializers import *
 import requests
 from django.contrib.auth.hashers import make_password , check_password
 from .utils import generate_access_token,check_access_token,sendMail
@@ -213,6 +213,30 @@ def getMyCars(request):
     cars = list(Car.objects.filter(account=account))
     cars = serializers.serialize('json', cars)
     return  HttpResponse(cars, content_type='application/json')
+
+
+@api_view(["GET"])
+def CarDetails(request,license):
+    check_access_token(request=request)
+    print( "Plaka" ,license)
+    car=Car.objects.get(license=license)
+    cars = serializers.serialize('json', car)
+    print(car)
+    return  HttpResponse(car, content_type='application/json')
+
+@api_view(["PoST"])
+def newCommet(request):
+    decoded = check_access_token(request=request)
+    account_uid = decoded['account_uid']
+    serializer = CommentSerializer(data=request.data)
+    print(serializer)
+
+    return
+
+
+
+
+
 
 
 

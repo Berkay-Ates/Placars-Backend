@@ -64,9 +64,7 @@ class Comment(models.Model):
     author = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="comments_authored")
     targetCar = models.ForeignKey(Car, on_delete=models.CASCADE)
     createDate = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    commentReceiver = models.ForeignKey(
-        Account, on_delete=models.CASCADE, blank=True, null=True, related_name="comments_received"
-    )
+
     content = models.CharField(max_length=100, blank=False, null=False)
     title = models.CharField(max_length=30, blank=False, null=False)
 

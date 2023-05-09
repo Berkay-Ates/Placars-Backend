@@ -9,5 +9,10 @@ urlpatterns = [
     path('account/',views.getAccount),
     path('newCar/',views.newCar),
     path("confimEmail/<str:token>/",views.emailVerify, name = "emailverify"),
-    path('ListmyCars/',views.getMyCars)
+    path('ListmyCars/',views.getMyCars),
+    path('newComment/',views.newCommet),
+
+
+    path('carDetails/license=str:<license>',views.CarDetails),
+
 ]
