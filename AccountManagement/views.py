@@ -4,6 +4,8 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
+import AccountManagement.models
 from .models import *
 from .serializers import *
 import requests
@@ -123,7 +125,8 @@ def login(request):
             if check_password(password=password,encoded=instance.password):
                 token=generate_access_token(instance)
                 account_session=AccountSession(account_uid=instance.account_uid,name=instance.name,userIp=get_ip(request))
-            return Response(token, status=status.HTTP_202_ACCEPTED)
+                token['isAcitve']=instance.isAcitve
+                return Response(token, status=status.HTTP_202_ACCEPTED)
         else:
             return Response("Gonderilen veriler uygun degil",status.HTTP_400_BAD_REQUEST)
     except Exception as e:
@@ -135,14 +138,20 @@ def getAccount(request):
         try:
             decoded=check_access_token(request=request)
             account_uid=decoded['account_uid']
-            instance=Account.objects.get(account_uid=account_uid)
-            print("decoded ne ",decoded)
-            account={
-                "name":instance.name,
-                "email":instance.email
+            instance = Account.objects.get(account_uid=account_uid)
+
+            result_dict = {
+                'name': instance.name,
+                'username': instance.username,
+                'phone': instance.phone,
+                'isActive': instance.isAcitve,
+                'following': list(instance.following.values_list('username', flat=True))
             }
-                
-            return Response(account,status.HTTP_200_OK)
+
+            s_instance = serializers.serialize('json', [instance])
+
+
+            return Response(result_dict,status=status.HTTP_200_OK)
 
         except Exception as e:
             print(e)
@@ -156,7 +165,7 @@ def newCar(request):
         account_uid=decoded['account_uid']
         instance: Car= None
         serializer=CarSerializer(data=request.data)
-
+        print(serializer,serializer.is_valid())
         if serializer.is_valid():
             try:
                 instance=Car.objects.get(license=serializer.validated_data["license"])            
@@ -217,25 +226,71 @@ def getMyCars(request):
 
 @api_view(["GET"])
 def CarDetails(request,license):
-    check_access_token(request=request)
-    print( "Plaka" ,license)
-    car=Car.objects.get(license=license)
-    cars = serializers.serialize('json', car)
-    print(car)
-    return  HttpResponse(car, content_type='application/json')
+    try:
+        check_access_token(request=request)
+        print( "Plaka" ,license)
+        car=Car.objects.get(license=license)
+        print(car)
+        s_car = serializers.serialize('json', [car])
+        print(s_car)
 
-@api_view(["PoST"])
+    except AccountManagement.models.Car.DoesNotExist:
+        return HttpResponse("Böyle bir araç yok", status=status.HTTP_404_NOT_FOUND)
+
+    except Exception as e:
+        #return HttpResponse("Kullanıcı girişi yapılmalı",status=status.HTTP_401_UNAUTHORIZED)
+        print(e)
+        raise e
+
+    return  HttpResponse(s_car, content_type='application/json')
+
+@api_view(["POST"])
 def newComment(request):
     decoded = check_access_token(request=request)
     account_uid = decoded['account_uid']
     serializer = CommentSerializer(data=request.data)
-    print(serializer)
+    print(serializer,serializer.is_valid())
+    try:
+        if serializer.is_valid():
+            Car_license=request.data.get('targetCarLicense')
+            print(Car_license)
+            car=Car.objects.get(license=Car_license)
 
-    return
+            print(car)
+            account=Account.objects.get(account_uid=account_uid)
+            newComment=Comment(author=account,targetCar=car,
+                               content=serializer.validated_data['content'],
+                               title=serializer.validated_data['title'])
+            newComment.save()
 
 
+        else:
+            return HttpResponse('Seriliazer valid değil', status=status.HTTP_400_BAD_REQUEST)
+
+    except Exception as e:
+        print(e)
+        raise  e
+
+    return  HttpResponse('Oluşturuldı',status=status.HTTP_201_CREATED)
 
 
+@api_view(["GET"])
+def checkMail(request,email):
+    accont=Account.objects.filter(email__exact=email)
+    print(accont.__len__())
+    response={
+        "exist":bool(accont.__len__())
+    }
+    return Response(response)
+
+@api_view(["GET"])
+def checkUsername(request,username):
+    accont=Account.objects.filter(username__exact=username)
+    print(accont.__len__())
+    response={
+        "exist":bool(accont.__len__())
+    }
+    return Response(response)
 
 
 

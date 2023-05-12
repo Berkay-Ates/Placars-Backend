@@ -13,7 +13,35 @@ class LoginSerializer(serializers.ModelSerializer):
 class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model=Car
-        fields=('license','brand','model','carPhotoLocationNo','color','satilikMi','carKm','carLicensePhotoLocationNo')
+        fields=('license',
+                'brand',
+                'model',
+                'carPhotoLocationNo'
+                ,'color'
+                ,'satilikMi'
+                ,'carKm'
+                ,'carLicensePhotoLocationNo')
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Comment
+        fields = ('content',
+                  'title')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
