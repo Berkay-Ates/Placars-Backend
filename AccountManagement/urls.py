@@ -13,6 +13,8 @@ urlpatterns = [
     path('newComment/',views.newComment),
 
 
-    path('carDetails/license=str:<license>',views.CarDetails),
+    path('carDetails/<str:license>/',views.CarDetails),
+    path('checkMail/<str:email>/',views.checkMail),
+    path('checkUsername/<str:username>/', views.checkUsername),
 
 ]

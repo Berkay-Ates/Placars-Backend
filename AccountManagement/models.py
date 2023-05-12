@@ -15,13 +15,13 @@ class Account(models.Model):
     phone = models.CharField(max_length=11, blank=True, null=True)
     createDate = models.DateTimeField(auto_now_add=True)
     isAcitve=models.BooleanField(default=False)
-    following=models.ManyToManyField('self',default=None,null=True,blank=True)
+    following=models.ManyToManyField('self',default=None,null=True,blank=True,symmetrical=False)
 
 
 
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.username}"
 
 
 
