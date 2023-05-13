@@ -148,8 +148,10 @@ def getAccount(request):
                 'username': instance.username,
                 'phone': instance.phone,
                 'isActive': instance.isAcitve,
-                'following': instance.following.values_list('username', flat=True),
-                'photo_location':instance.photo_location,
+                'following': instance.following.values_list('email', flat=True),
+                'profile_img_url':instance.profile_img_url,
+                'email':instance.email,
+                'recently_messaged': instance.recently_messaged.values_list('email', flat=True),
             }
 
             s_instance = serializers.serialize('json', [instance])
@@ -296,10 +298,53 @@ def checkUsername(request,username):
     }
     return Response(response)
 
+@api_view(["POST"])
+def addRecentlMessaged(request):
+
+    try:
+        decoded = check_access_token(request=request)
+        account_uid = decoded['account_uid']
+        account=Account.objects.get(account_uid=account_uid)
+        target_mail=request.data.get("user_mail")
+
+        target_account=Account.objects.get(email=target_mail)
+
+        account.recently_messaged.add(target_account)
+        account.save()
 
 
 
 
+    except AccountManagement.models.Account.DoesNotExist  :
+        print("Gecersiz mail adersi")
+        return Response("Verediginiz mail adresi bulunamadi",status=status.HTTP_404_NOT_FOUND)
+
+    return Response("Basariyla Eklendi",status=status.HTTP_200_OK)
+
+
+
+
+@api_view(["POST"])
+def follow_new_user(request):
+    try:
+        decoded = check_access_token(request=request)
+        account_uid = decoded['account_uid']
+        account=Account.objects.get(account_uid=account_uid)
+        target_mail=request.data.get("user_mail")
+
+        target_account=Account.objects.get(email=target_mail)
+
+        account.following.add(target_account)
+        account.save()
+
+
+
+
+    except AccountManagement.models.Account.DoesNotExist :
+        print("Gecersiz mail adersi")
+        return Response("Verediginiz mail adresi bulunamadi",status=status.HTTP_404_NOT_FOUND)
+
+    return Response("Basariyla Eklendi",status=status.HTTP_200_OK)
 
 
 
