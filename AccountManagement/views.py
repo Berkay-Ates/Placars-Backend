@@ -80,7 +80,7 @@ def createAccount(request):
                 instance=Account(name=serializer.validated_data['name'], email=serializer.validated_data.get('email', None),\
                                 userIp=get_ip(request),phone=serializer.validated_data.get('phone', None),
                                 password=make_password(serializer.validated_data['password']),username=serializer.validated_data['username']
-                                ,photo_location=serializer.validated_data.get('email', None))
+                                ,profile_img_url=serializer.validated_data.get('profile_img_url', None))
                 print(instance)
         else:
             print('serializer valid degil')
