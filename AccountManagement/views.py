@@ -79,7 +79,8 @@ def createAccount(request):
                 #Yeni Kullanici Olusuturuldu
                 instance=Account(name=serializer.validated_data['name'], email=serializer.validated_data.get('email', None),\
                                 userIp=get_ip(request),phone=serializer.validated_data.get('phone', None),
-                                password=make_password(serializer.validated_data['password']),username=serializer.validated_data['username'])
+                                password=make_password(serializer.validated_data['password']),username=serializer.validated_data['username']
+                                ,photo_location=serializer.validated_data.get('email', None))
                 print(instance)
         else:
             print('serializer valid degil')
@@ -148,7 +149,7 @@ def getAccount(request):
                 'phone': instance.phone,
                 'isActive': instance.isAcitve,
                 'following': instance.following.values_list('username', flat=True),
-
+                'photo_location':instance.photo_location,
             }
 
             s_instance = serializers.serialize('json', [instance])
