@@ -40,7 +40,7 @@ def check_access_token(request):
 
 def sendMail(target,token):
     print("sent mamil ")
-    html_message = render_to_string('email/emailTemplate.html', {'confirmation_link': '127.0.0.1:8000/AccountManagement/confimEmail/'+token['access']})
+    html_message = render_to_string('email/emailTemplate.html', {'confirmation_link': 'https://placars-q4i4.onrender.com/AccountManagement/confimEmail/'+token['access']})
     plain_message = strip_tags(html_message)
     send_mail(
         'Onay e-postası',  # konu
