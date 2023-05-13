@@ -15,13 +15,13 @@ class Account(models.Model):
     phone = models.CharField(max_length=11, blank=True, null=True)
     createDate = models.DateTimeField(auto_now_add=True)
     isAcitve=models.BooleanField(default=False)
-    following=models.ManyToManyField('self',default=None,null=True,blank=True,symmetrical=False)
+    following=models.ManyToManyField('self',default=None,null=True,blank=True,symmetrical=False,related_name='following_list')
     profile_img_url=models.CharField(max_length=256,default=None,null=True,blank=True)
-
+    recently_messaged=models.ManyToManyField('self',default=None,null=True,blank=True,symmetrical=False,related_name='message_list')
 
 
     def __str__(self):
-        return f"{self.username}"
+        return f"{self.email}"
 
 
 
