@@ -4,7 +4,7 @@ from .models import *
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model=Account
-        fields=('name','email','phone','password','username')
+        fields=('name','email','phone','password','username','photo_location')
 class LoginSerializer(serializers.ModelSerializer):
     class Meta:
         model=Account

@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e1bb184-01e4-49e4-97c1-cefdf17d248f" name="Changes" comment="onay maili placars ile geliyor">
+    <list default="true" id="9e1bb184-01e4-49e4-97c1-cefdf17d248f" name="Changes" comment="profile picture">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AccountManagement/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AccountManagement/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AccountManagement/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Placars/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Placars/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +127,7 @@
       <workItem from="1683701110121" duration="4283000" />
       <workItem from="1683797865923" duration="8095000" />
       <workItem from="1683877228809" duration="1796000" />
-      <workItem from="1683971547269" duration="2573000" />
+      <workItem from="1683971547269" duration="2980000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1679429860551</created>
@@ -327,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683972284413</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="profile picture">
+      <created>1683974329190</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1683974329190</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -363,6 +368,7 @@
     <MESSAGE value="pythonanywhere" />
     <MESSAGE value="sqlite" />
     <MESSAGE value="onay maili placars ile geliyor" />
-    <option name="LAST_COMMIT_MESSAGE" value="onay maili placars ile geliyor" />
+    <MESSAGE value="profile picture" />
+    <option name="LAST_COMMIT_MESSAGE" value="profile picture" />
   </component>
 </project>
