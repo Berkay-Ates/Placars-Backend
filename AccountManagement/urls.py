@@ -18,5 +18,6 @@ urlpatterns = [
     path('checkUsername/<str:username>/', views.checkUsername),
     path('add_recently_messaged/', views.addRecentlMessaged),
     path('follow_new_user/', views.follow_new_user),
+    path('updateUser/', views.updateUser),
 
 ]
