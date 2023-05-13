@@ -71,7 +71,10 @@ def createAccount(request):
         if serializer.is_valid():
             try:
                 instance=Account.objects.get(email=serializer.validated_data['email'])
-                return  Response('Bu mail kullanilmaktadir',status=status.HTTP_406_NOT_ACCEPTABLE)
+                if instance.isAcitve==False:
+                    token = generate_access_token(instance)
+                    sendMail(instance.email, token)
+                    return  Response('Hesabiniza onay maili gonderilmistir',status=status.HTTP_406_NOT_ACCEPTABLE)
             except Account.DoesNotExist:
                 #Yeni Kullanici Olusuturuldu
                 instance=Account(name=serializer.validated_data['name'], email=serializer.validated_data.get('email', None),\
@@ -100,7 +103,6 @@ def createAccount(request):
 
         
         token=generate_access_token(instance)
-        print("instance", instance.email)
         sendMail(instance.email,token)
         instance.save()
         account_session.save()
@@ -145,7 +147,8 @@ def getAccount(request):
                 'username': instance.username,
                 'phone': instance.phone,
                 'isActive': instance.isAcitve,
-                'following': list(instance.following.values_list('username', flat=True))
+                'following': instance.following.values_list('username', flat=True),
+
             }
 
             s_instance = serializers.serialize('json', [instance])

@@ -16,7 +16,7 @@ class Account(models.Model):
     createDate = models.DateTimeField(auto_now_add=True)
     isAcitve=models.BooleanField(default=False)
     following=models.ManyToManyField('self',default=None,null=True,blank=True,symmetrical=False)
-
+    photo_location=models.CharField(max_length=256,default=None,null=True,blank=True)
 
 
 
