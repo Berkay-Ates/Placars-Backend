@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e1bb184-01e4-49e4-97c1-cefdf17d248f" name="Changes" comment="sqlite">
+    <list default="true" id="9e1bb184-01e4-49e4-97c1-cefdf17d248f" name="Changes" comment="onay maili placars ile geliyor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AccountManagement/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AccountManagement/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +126,7 @@
       <workItem from="1683701110121" duration="4283000" />
       <workItem from="1683797865923" duration="8095000" />
       <workItem from="1683877228809" duration="1796000" />
-      <workItem from="1683971547269" duration="35000" />
+      <workItem from="1683971547269" duration="730000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1679429860551</created>
@@ -303,7 +303,21 @@
       <option name="project" value="LOCAL" />
       <updated>1683880962563</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="onay maili placars ile geliyor">
+      <created>1683971613615</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1683971613615</updated>
+    </task>
+    <task id="LOCAL-00027" summary="onay maili placars ile geliyor">
+      <created>1683971738551</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1683971738551</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,6 +352,7 @@
     <MESSAGE value="chatHarici" />
     <MESSAGE value="pythonanywhere" />
     <MESSAGE value="sqlite" />
-    <option name="LAST_COMMIT_MESSAGE" value="sqlite" />
+    <MESSAGE value="onay maili placars ile geliyor" />
+    <option name="LAST_COMMIT_MESSAGE" value="onay maili placars ile geliyor" />
   </component>
 </project>
