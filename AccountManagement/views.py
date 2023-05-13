@@ -348,7 +348,37 @@ def follow_new_user(request):
 
 
 
+@api_view(["POST"])
+def updateUser(request):
+    try:
+        decoded = check_access_token(request=request)
+        account_uid = decoded['account_uid']
+        account = Account.objects.get(account_uid=account_uid)
 
+
+        serializer=AccountUpdateSerializer(data=request.data)
+        print(serializer)
+        if serializer.is_valid():
+            if serializer.validated_data.get('name', False):
+                 account.name=serializer.validated_data['name']
+            if serializer.validated_data.get('phone', False):
+                 account.phone=serializer.validated_data['phone']
+            if serializer.validated_data.get('profile_img_url', False):
+                 account.profile_img_url=serializer.validated_data['profile_img_url']
+            if serializer.validated_data.get('password', False):
+                account.password = make_password(serializer.validated_data['password'])
+
+
+
+        account.save()
+
+
+
+    except Exception as e:
+        print(e)
+        raise e
+
+    return Response("Basariyla Guncell3endi", status=status.HTTP_200_OK)
 
 
 
