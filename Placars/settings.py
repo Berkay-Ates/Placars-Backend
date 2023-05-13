@@ -159,3 +159,4 @@ EMAIL_HOST_USER = 'placars2142@gmail.com'
 EMAIL_HOST_PASSWORD = 'zvsqpyfseqkvcwhg'
 
 EMAIL_USE_TLS = True
+

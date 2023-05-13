@@ -147,7 +147,8 @@ def getAccount(request):
                 'username': instance.username,
                 'phone': instance.phone,
                 'isActive': instance.isAcitve,
-                'following': list(instance.following.values_list('username', flat=True))
+                'following': instance.following.values_list('username', flat=True),
+
             }
 
             s_instance = serializers.serialize('json', [instance])
