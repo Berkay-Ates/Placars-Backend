@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
     path('CreateAccount/',views.createAccount),
     path('login/',views.login),
-    path('account/',views.getAccount),
+    path('view_account/',views.view_account),
     path('newCar/',views.newCar),
     path("confimEmail/<str:token>/",views.emailVerify, name = "emailverify"),
     path('ListmyCars/',views.getMyCars),
