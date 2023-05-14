@@ -137,11 +137,11 @@ def login(request):
         
 
 @api_view(["GET"])
-def getAccount(request):
+def view_account(request):
         try:
-            decoded=check_access_token(request=request)
-            account_uid=decoded['account_uid']
-            instance = Account.objects.get(account_uid=account_uid)
+            email=request.data.get("email")
+
+            instance = Account.objects.get(email__exact=email)
 
             result_dict = {
                 'name': instance.name,
