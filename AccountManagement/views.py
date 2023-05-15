@@ -75,6 +75,9 @@ def createAccount(request):
                     token = generate_access_token(instance)
                     sendMail(instance.email, token)
                     return  Response('Hesabiniza onay maili gonderilmistir',status=status.HTTP_406_NOT_ACCEPTABLE)
+
+                else:
+                    return Response('Hesabiniz Kayitlidir.', status=status.HTTP_200_OK)
             except Account.DoesNotExist:
                 #Yeni Kullanici Olusuturuldu
                 instance=Account(name=serializer.validated_data['name'], email=serializer.validated_data.get('email', None),\
