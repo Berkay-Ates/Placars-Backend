@@ -282,12 +282,13 @@ def newComment(request):
 
 @api_view(["GET"])
 def checkMail(request,email):
-    accont=Account.objects.filter(email__exact=email)
-    print(accont.__len__())
-    response={
-        "exist":bool(accont.__len__())
-    }
-    return Response(response)
+
+    try:
+        accont=Account.objects.get(email__exact=email)
+    except AccountManagement.models.Account.DoesNotExist:
+       return Response({"exist":False},status=status.HTTP_404_NOT_FOUND)
+
+    return Response({"exist":accont.isAcitve},status=status.HTTP_200_OK)
 
 @api_view(["GET"])
 def checkUsername(request,username):
