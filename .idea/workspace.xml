@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e1bb184-01e4-49e4-97c1-cefdf17d248f" name="Changes" comment="view_account">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AccountManagement/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/views.py" afterDir="false" />
+    <list default="true" id="9e1bb184-01e4-49e4-97c1-cefdf17d248f" name="Changes" comment="new account ayarlamalari">
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -131,7 +129,7 @@
       <workItem from="1683990105833" duration="7207000" />
       <workItem from="1684052990801" duration="925000" />
       <workItem from="1684066771842" duration="614000" />
-      <workItem from="1684140244712" duration="2564000" />
+      <workItem from="1684140244712" duration="2726000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1679429860551</created>
@@ -378,7 +376,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684141406439</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="new account ayarlamalari">
+      <created>1684154205789</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1684154205789</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -419,6 +424,7 @@
     <MESSAGE value="return mail" />
     <MESSAGE value="update" />
     <MESSAGE value="view_account" />
-    <option name="LAST_COMMIT_MESSAGE" value="view_account" />
+    <MESSAGE value="new account ayarlamalari" />
+    <option name="LAST_COMMIT_MESSAGE" value="new account ayarlamalari" />
   </component>
 </project>

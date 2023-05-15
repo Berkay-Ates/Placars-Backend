@@ -74,7 +74,7 @@ def createAccount(request):
                 if instance.isAcitve==False:
                     token = generate_access_token(instance)
                     sendMail(instance.email, token)
-                    return  Response('Hesabiniza onay maili gonderilmistir',status=status.HTTP_406_NOT_ACCEPTABLE)
+                    return  Response(token,status=status.HTTP_201_CREATED)
 
                 else:
                     return Response('Hesabiniz Kayitlidir.', status=status.HTTP_200_OK)
