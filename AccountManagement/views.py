@@ -132,8 +132,8 @@ def login(request):
                 token=generate_access_token(instance)
                 account_session=AccountSession(account_uid=instance.account_uid,name=instance.name,userIp=get_ip(request))
                 token['isAcitve']=instance.isAcitve
-                token['username']=instance.isAcitve
-                token['email']=instance.isAcitve
+                token['username']=instance.username
+                token['email']=instance.email
                 token['isAcitve']=instance.isAcitve
                 token['profile_img_url']=instance.profile_img_url
                 token['name']=instance.name
