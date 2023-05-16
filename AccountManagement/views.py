@@ -279,7 +279,8 @@ def getMyCars(request):
             "carLicencePhotoUrl": car.carLicencePhotoUrl,
             "carCommentCount": car.carCommentCount,
             "carLikeCount": car.carLikeCount,
-            "postDate":car.postDate
+            "postDate":car.postDate,
+            "profile_img_url": account.profile_img_url
 
         })
 
@@ -294,6 +295,7 @@ def CarDetails(request,carPlate):
         check_access_token(request=request)
         print( "Plaka" ,carPlate)
         car=Car.objects.get(carPlate=carPlate)
+        account=car.account
         print(car)
 
         response={
@@ -308,7 +310,8 @@ def CarDetails(request,carPlate):
             "carLicencePhotoUrl": car.carLicencePhotoUrl,
             "carCommentCount": car.carCommentCount,
             "carLikeCount": car.carLikeCount,
-            "postDate": car.postDate
+            "postDate": car.postDate,
+            "profile_img_url": account.profile_img_url
 
         }
 
@@ -485,7 +488,8 @@ def getCars(request,email):
                 "carLicencePhotoUrl": car.carLicencePhotoUrl,
                 "carCommentCount": car.carCommentCount,
                 "carLikeCount": car.carLikeCount,
-                "postDate":car.postDate
+                "postDate":car.postDate,
+                "profile_img_url":account.profile_img_url
 
 
             })
