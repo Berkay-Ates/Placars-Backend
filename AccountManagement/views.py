@@ -310,7 +310,6 @@ def CarDetails(request,carPlate):
             "carLicencePhotoUrl": car.carLicencePhotoUrl,
             "carCommentCount": car.carCommentCount,
             "carLikeCount": car.carLikeCount,
-            "postDate": car.postDate,
             "profile_img_url": account.profile_img_url
 
         }
