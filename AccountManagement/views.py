@@ -188,7 +188,7 @@ def newCar(request):
 
                 instance=Car(carPlate=serializer.validated_data["carPlate"],
                              carBrand=serializer.validated_data.get('carBrand', None),carPhotoUrl=serializer.validated_data.get('carPhotoUrl', None),
-                             carLicencePhotoUrl=serializer.validated_data.get('carLicencePhotoUrl', None),isCarSale=serializer.validated_data.get('isCarSale', None),
+                             carLicencePhotoUrl=serializer.validated_data.get('carLicencePhotoUrl', None),
                              carKm=serializer.validated_data.get('carKm', None),carDescription=serializer.validated_data.get('carDescription', None)
                              ,carCommentCount=serializer.validated_data.get('carCommentCount', None)
                              ,carLikeCount=serializer.validated_data.get('carLikeCount', None))
@@ -196,6 +196,11 @@ def newCar(request):
                 if  request.data.get("owner")=="True":
                         account=Account.objects.get(account_uid=account_uid)
                         instance.account=account
+
+
+                if request.data.get("isCarSale")=="True":
+                    instance.isCarSale=True
+
 
 
 
