@@ -263,16 +263,22 @@ def getMyCars(request):
     decoded = check_access_token(request=request)
     account_uid = decoded['account_uid']
     account=Account.objects.get(account_uid=account_uid)
-    cars = list(Car.objects.filter(account=account))
+    cars = list(Car.objects.filter(account__exact=account))
     response = []
 
     for car in cars:
         response.append({
+
+            "carOwnerEmail": car.account.email,
             "carPlate": car.carPlate,
+            "carBrand": car.carBrand,
+            "carPhotoUrl": car.carPhotoUrl,
             "isCarSale": car.isCarSale,
             "carKm": car.carKm,
-            "carBrand": car.carBrand,
-            "carDescription": car.carDescription
+            "carDescription": car.carDescription,
+            "carLicencePhotoUrl": car.carLicencePhotoUrl,
+            "carCommentCount": car.carCommentCount,
+            "carLikeCount": car.carLikeCount
 
         })
 
