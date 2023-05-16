@@ -12,7 +12,7 @@ def generate_access_token(user):
 
     access_token_payload = {
         'account_uid':str(user.account_uid),
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1, minutes=30),
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(days=365),
         'iat': datetime.datetime.utcnow(),
     }
     access_token = jwt.encode(access_token_payload,
@@ -26,6 +26,7 @@ def check_access_token(request):
     decoded=None
     try:
         token=request.META.get('HTTP_AUTHORIZATION').split(" ")[1]
+        print(request.META)
         decoded=jwt.decode(token,settings.SECRET_KEY, algorithms=['HS256',])
     except jwt.exceptions.ExpiredSignatureError :
             return Response("Token gecerlilik suresini yitirmistir",status.HTTP_401_UNAUTHORIZED)
