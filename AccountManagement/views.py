@@ -514,8 +514,43 @@ def increaseLikeCount(request):
 
 
 
+    except Exception as e:
+        print(e)
+        raise e
+
+
+
+@api_view(["GET"])
+def listAllCars(request):
+    try:
+            decoded = check_access_token(request=request)
+            account_uid = decoded['account_uid']
+
+            cars = list(Car.objects.all())
+            response = []
+
+            for car in cars:
+                response.append({
+
+                    "carOwnerEmail": car.account.email,
+                    "carPlate": car.carPlate,
+                    "carBrand": car.carBrand,
+                    "carPhotoUrl": car.carPhotoUrl,
+                    "isCarSale": car.isCarSale,
+                    "carKm": car.carKm,
+                    "carDescription": car.carDescription,
+                    "carLicencePhotoUrl": car.carLicencePhotoUrl,
+                    "carCommentCount": car.carCommentCount,
+                    "carLikeCount": car.carLikeCount,
+                    "postDate": car.postDate,
+
+                })
 
 
     except Exception as e:
         print(e)
         raise e
+
+    return Response({"cars": response}, status=status.HTTP_200_OK)
+
+
