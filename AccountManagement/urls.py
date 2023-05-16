@@ -8,6 +8,7 @@ urlpatterns = [
     path('login/',views.login),
     path('view_account/',views.view_account),
     path('newCar/',views.newCar),
+    path('deleteCar/', views.deleteCar),
     path("confimEmail/<str:token>/",views.emailVerify, name = "emailverify"),
     path('ListmyCars/',views.getMyCars),
     path('ListCars/<str:email>/',views.getCars),
