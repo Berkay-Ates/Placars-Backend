@@ -280,9 +280,6 @@ def getMyCars(request):
             "carCommentCount": car.carCommentCount,
             "carLikeCount": car.carLikeCount
 
-
-
-
         })
 
 
