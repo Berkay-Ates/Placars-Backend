@@ -278,7 +278,8 @@ def getMyCars(request):
             "carDescription": car.carDescription,
             "carLicencePhotoUrl": car.carLicencePhotoUrl,
             "carCommentCount": car.carCommentCount,
-            "carLikeCount": car.carLikeCount
+            "carLikeCount": car.carLikeCount,
+            "postDate":car.postDate
 
         })
 
@@ -306,8 +307,8 @@ def CarDetails(request,carPlate):
             "carDescription": car.carDescription,
             "carLicencePhotoUrl": car.carLicencePhotoUrl,
             "carCommentCount": car.carCommentCount,
-            "carLikeCount": car.carLikeCount
-
+            "carLikeCount": car.carLikeCount,
+            "postDate": car.postDate
 
         }
 
@@ -483,7 +484,9 @@ def getCars(request,email):
                 "carDescription": car.carDescription,
                 "carLicencePhotoUrl": car.carLicencePhotoUrl,
                 "carCommentCount": car.carCommentCount,
-                "carLikeCount": car.carLikeCount
+                "carLikeCount": car.carLikeCount,
+                "postDate":car.postDate
+
 
             })
 
