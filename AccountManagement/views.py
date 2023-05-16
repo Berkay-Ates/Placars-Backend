@@ -465,20 +465,41 @@ def getCars(request,email):
         decoded = check_access_token(request=request)
         account_uid = decoded['account_uid']
 
-        targetAccount=Account.objects.get(email__exact=email)
-        cars = list(Car.objects.filter(account=targetAccount))
-        response=[]
+
+
+        account = Account.objects.get(email__exact=email)
+        cars = list(Car.objects.filter(account__exact=account))
+        response = []
 
         for car in cars:
             response.append({
-                "carPlate":car.carPlate,
-                "isCarSale":car.isCarSale,
-                "carKm":car.carKm,
-                "carBrand":car.carBrand,
-                "carDescription":car.carDescription
+
+                "carOwnerEmail": car.account.email,
+                "carPlate": car.carPlate,
+                "carBrand": car.carBrand,
+                "carPhotoUrl": car.carPhotoUrl,
+                "isCarSale": car.isCarSale,
+                "carKm": car.carKm,
+                "carDescription": car.carDescription,
+                "carLicencePhotoUrl": car.carLicencePhotoUrl,
+                "carCommentCount": car.carCommentCount,
+                "carLikeCount": car.carLikeCount
 
             })
 
+
+    except Exception as e:
+        print(e)
+        raise e
+
+    return Response({"cars": response}, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+def increaseLikeCount(request):
+    try:
+        decoded = check_access_token(request=request)
+        account_uid = decoded['account_uid']
 
 
 
@@ -487,5 +508,3 @@ def getCars(request,email):
     except Exception as e:
         print(e)
         raise e
-
-    return Response(response, status=status.HTTP_200_OK)

@@ -13,6 +13,7 @@ urlpatterns = [
     path('ListmyCars/',views.getMyCars),
     path('ListCars/<str:email>/',views.getCars),
     path('newComment/',views.newComment),
+    path('increaseLikeCount/',views.increaseLikeCount),
 
 
     path('carDetails/<str:carPlate>/',views.CarDetails),
