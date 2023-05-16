@@ -279,7 +279,8 @@ def getMyCars(request):
             "carLicencePhotoUrl": car.carLicencePhotoUrl,
             "carCommentCount": car.carCommentCount,
             "carLikeCount": car.carLikeCount,
-            "postDate":car.postDate
+            "postDate":car.postDate,
+            "profile_img_url": account.profile_img_url
 
         })
 
