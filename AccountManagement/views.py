@@ -181,16 +181,17 @@ def newCar(request):
         account_uid=decoded['account_uid']
         instance: Car= None
         serializer=CarSerializer(data=request.data)
-        print(serializer,serializer.is_valid())
         if serializer.is_valid():
             try:
-                instance=Car.objects.get(license=serializer.validated_data["license"])            
+                instance=Car.objects.get(carPlate=serializer.validated_data["carPlate"])
             except Car.DoesNotExist:
 
-                instance=Car(license=serializer.validated_data["license"],
-                             brand=serializer.validated_data.get('brand', None),model=serializer.validated_data.get('model', None),
-                             carPhotoLocationNo=serializer.validated_data.get('carPhotoLocationNo', None),carLicensePhotoLocationNo=serializer.validated_data.get('carLicensePhotoLocationNo', None),
-                             color=serializer.validated_data.get('color', None),satilikMi=serializer.validated_data.get('satilikMi', None),carKm=serializer.validated_data.get('carKm', None))
+                instance=Car(carPlate=serializer.validated_data["carPlate"],
+                             carBrand=serializer.validated_data.get('carBrand', None),carPhotoUrl=serializer.validated_data.get('carPhotoUrl', None),
+                             carLicencePhotoUrl=serializer.validated_data.get('carLicencePhotoUrl', None),isCarSale=serializer.validated_data.get('isCarSale', None),
+                             carKm=serializer.validated_data.get('carKm', None),carDescription=serializer.validated_data.get('carDescription', None)
+                             ,carCommentCount=serializer.validated_data.get('carCommentCount', None)
+                             ,carLikeCount=serializer.validated_data.get('carLikeCount', None))
                 
                 if  request.data.get("owner")=="True":
                         account=Account.objects.get(account_uid=account_uid)
@@ -241,14 +242,31 @@ def getMyCars(request):
 
 
 @api_view(["GET"])
-def CarDetails(request,license):
+def CarDetails(request,carPlate):
     try:
         check_access_token(request=request)
-        print( "Plaka" ,license)
-        car=Car.objects.get(license=license)
+        print( "Plaka" ,carPlate)
+        car=Car.objects.get(carPlate=carPlate)
         print(car)
+
+        response={
+            "carOwnerEmail": car.account.email,
+            "carPlate": car.carPlate,
+            "carBrand": car.carBrand,
+            "carPhotoUrl": car.carPhotoUrl,
+            "postDate": car.postDate,
+            "isCarSale": car.isCarSale,
+            "carKm": car.carKm,
+            "carDescription": car.carDescription,
+            "carLicencePhotoUrl": car.carLicencePhotoUrl,
+            "carCommentCount": car.carCommentCount,
+            "carLikeCount": car.carLikeCount
+
+
+        }
+
+
         s_car = serializers.serialize('json', [car])
-        print(s_car)
 
     except AccountManagement.models.Car.DoesNotExist:
         return HttpResponse("Böyle bir araç yok", status=status.HTTP_404_NOT_FOUND)
@@ -258,7 +276,7 @@ def CarDetails(request,license):
         print(e)
         raise e
 
-    return  HttpResponse(s_car, content_type='application/json')
+    return  Response(response, status=status.HTTP_200_OK)
 
 @api_view(["POST"])
 def newComment(request):

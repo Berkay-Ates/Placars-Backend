@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e1bb184-01e4-49e4-97c1-cefdf17d248f" name="Changes" comment="new account ayarlamalari">
+    <list default="true" id="9e1bb184-01e4-49e4-97c1-cefdf17d248f" name="Changes" comment="login response">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AccountManagement/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AccountManagement/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AccountManagement/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AccountManagement/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
@@ -133,7 +136,9 @@
       <workItem from="1684066771842" duration="614000" />
       <workItem from="1684140244712" duration="2726000" />
       <workItem from="1684154555494" duration="459000" />
-      <workItem from="1684162133231" duration="893000" />
+      <workItem from="1684162133231" duration="967000" />
+      <workItem from="1684163490625" duration="217000" />
+      <workItem from="1684216627691" duration="4400000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1679429860551</created>
@@ -401,7 +406,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684154800848</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="login response">
+      <created>1684163050697</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1684163050697</updated>
+    </task>
+    <task id="LOCAL-00040" summary="login response">
+      <created>1684163550608</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1684163550608</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,6 +462,7 @@
     <MESSAGE value="update" />
     <MESSAGE value="view_account" />
     <MESSAGE value="new account ayarlamalari" />
-    <option name="LAST_COMMIT_MESSAGE" value="new account ayarlamalari" />
+    <MESSAGE value="login response" />
+    <option name="LAST_COMMIT_MESSAGE" value="login response" />
   </component>
 </project>

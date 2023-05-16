@@ -13,7 +13,7 @@ urlpatterns = [
     path('newComment/',views.newComment),
 
 
-    path('carDetails/<str:license>/',views.CarDetails),
+    path('carDetails/<str:carPlate>/',views.CarDetails),
     path('checkMail/<str:email>/',views.checkMail),
     path('checkUsername/<str:username>/', views.checkUsername),
     path('add_recently_messaged/', views.addRecentlMessaged),

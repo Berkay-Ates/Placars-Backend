@@ -32,18 +32,21 @@ class Account(models.Model):
 class Car(models.Model):
     account = models.ForeignKey(Account,on_delete=models.CASCADE, blank=True, null=True)
     car_uid = models.UUIDField(primary_key=True,default=uuid4, editable=False, unique=True, db_index=True)
-    license = models.CharField(max_length=9, blank=False, null=False)
-    brand = models.CharField(max_length=30, blank=True, null=True)
-    model = models.CharField(max_length=40, blank=True, null=True)
-    carPhotoLocationNo = models.CharField(max_length=100, blank=True, null=True)
-    carLicensePhotoLocationNo = models.CharField(max_length=100, blank=True, null=True)
-    color = models.CharField(max_length=10, blank=True, null=True)
-    createDate = models.DateTimeField(auto_now_add=True)
-    satilikMi=models.BooleanField(default=False)
+    carPlate = models.CharField(max_length=9, blank=False, null=False)
+    carBrand = models.CharField(max_length=30, blank=True, null=True)
+    carPhotoUrl = models.CharField(max_length=100, blank=True, null=True)
+    postDate = models.DateTimeField(auto_now_add=True)
+    isCarSale=models.BooleanField(default=False)
     carKm=models.IntegerField(default=0)
+    carDescription=models.CharField(max_length=500, blank=True, null=True)
+    carLicencePhotoUrl=models.CharField(max_length=100, blank=True, null=True)
+    carCommentCount=models.IntegerField(default=0)
+    carLikeCount=models.IntegerField(default=0)
+
+
 
     def __str__(self):
-        return f"{self.model} {self.brand} "
+        return f"{self.carBrand} "
 
 class Comment(models.Model):
     comment_uid = models.UUIDField(primary_key=True,default=uuid4, editable=False, unique=True, db_index=True)
