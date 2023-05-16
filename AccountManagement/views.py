@@ -237,8 +237,21 @@ def getMyCars(request):
     account_uid = decoded['account_uid']
     account=Account.objects.get(account_uid=account_uid)
     cars = list(Car.objects.filter(account=account))
-    cars = serializers.serialize('json', cars)
-    return  HttpResponse(cars, content_type='application/json')
+    response = []
+
+    for car in cars:
+        response.append({
+            "carPlate": car.carPlate,
+            "isCarSale": car.isCarSale,
+            "carKm": car.carKm,
+            "carBrand": car.carBrand,
+            "carDescription": car.carDescription
+
+        })
+
+
+
+    return  Response(response, status=status.HTTP_200_OK)
 
 
 @api_view(["GET"])
@@ -413,3 +426,33 @@ def updateUser(request):
 
 
 
+@api_view(["GET"])
+def getCars(request,email):
+    try:
+        decoded = check_access_token(request=request)
+        account_uid = decoded['account_uid']
+
+        targetAccount=Account.objects.get(email__exact=email)
+        cars = list(Car.objects.filter(account=targetAccount))
+        response=[]
+
+        for car in cars:
+            response.append({
+                "carPlate":car.carPlate,
+                "isCarSale":car.isCarSale,
+                "carKm":car.carKm,
+                "carBrand":car.carBrand,
+                "carDescription":car.carDescription
+
+            })
+
+
+
+
+
+
+    except Exception as e:
+        print(e)
+        raise e
+
+    return Response(response, status=status.HTTP_200_OK)

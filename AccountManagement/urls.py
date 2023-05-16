@@ -10,6 +10,7 @@ urlpatterns = [
     path('newCar/',views.newCar),
     path("confimEmail/<str:token>/",views.emailVerify, name = "emailverify"),
     path('ListmyCars/',views.getMyCars),
+    path('ListCars/<str:email>/',views.getCars),
     path('newComment/',views.newComment),
 
 

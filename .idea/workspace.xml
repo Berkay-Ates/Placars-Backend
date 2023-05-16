@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e1bb184-01e4-49e4-97c1-cefdf17d248f" name="Changes" comment="login response">
+    <list default="true" id="9e1bb184-01e4-49e4-97c1-cefdf17d248f" name="Changes" comment="new Car update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AccountManagement/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AccountManagement/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AccountManagement/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AccountManagement/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/AccountManagement/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
@@ -138,7 +136,7 @@
       <workItem from="1684154555494" duration="459000" />
       <workItem from="1684162133231" duration="967000" />
       <workItem from="1684163490625" duration="217000" />
-      <workItem from="1684216627691" duration="4400000" />
+      <workItem from="1684216627691" duration="5754000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1679429860551</created>
@@ -420,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684163550608</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="new Car update">
+      <created>1684222081560</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1684222081560</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -463,6 +468,7 @@
     <MESSAGE value="view_account" />
     <MESSAGE value="new account ayarlamalari" />
     <MESSAGE value="login response" />
-    <option name="LAST_COMMIT_MESSAGE" value="login response" />
+    <MESSAGE value="new Car update" />
+    <option name="LAST_COMMIT_MESSAGE" value="new Car update" />
   </component>
 </project>
