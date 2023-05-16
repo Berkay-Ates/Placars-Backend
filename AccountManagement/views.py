@@ -214,6 +214,33 @@ def newCar(request):
         print(e)
         raise e
 
+@api_view(["POST"])
+def deleteCar(request):
+    try:
+        decoded=check_access_token(request=request)
+        account_uid=decoded['account_uid']
+
+        account=Account.objects.get(account_uid=account_uid)
+
+        car=Car.objects.get(carPlate=request.data.get("carPlate"))
+
+        if car.account==account:
+            car.delete()
+        else:
+            return Response("Bu araci silemezsiniz",status=status.HTTP_403_FORBIDDEN)
+
+
+    except Exception as e :
+        print(e)
+        raise e
+
+    return Response("Arac silinmistir",status=status.HTTP_200_OK)
+
+
+
+
+
+
 @api_view(["GET"])
 def emailVerify(request,token):
     print("verify email token ",token)
