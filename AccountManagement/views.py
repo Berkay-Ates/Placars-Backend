@@ -162,7 +162,7 @@ def view_account(request):
                 'following': instance.following.values_list('email', flat=True),
                 'profile_img_url':instance.profile_img_url,
                 'email':instance.email,
-                'recently_messaged': instance.recently_messaged.values_list('email','profile_img_url', flat=True),
+                'recently_messaged': instance.recently_messaged.values('email','profile_img_url'),
             }
 
             s_instance = serializers.serialize('json', [instance])
