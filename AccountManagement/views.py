@@ -139,6 +139,7 @@ def login(request):
                 token['name']=instance.name
 
 
+
                 return Response(token, status=status.HTTP_202_ACCEPTED)
         else:
             return Response("Gonderilen veriler uygun degil",status.HTTP_400_BAD_REQUEST)
@@ -161,7 +162,7 @@ def view_account(request):
                 'following': instance.following.values_list('email', flat=True),
                 'profile_img_url':instance.profile_img_url,
                 'email':instance.email,
-                'recently_messaged': instance.recently_messaged.values_list('email', flat=True),
+                'recently_messaged': instance.recently_messaged.values_list('email','profile_img_url', flat=True),
             }
 
             s_instance = serializers.serialize('json', [instance])
